@@ -9,37 +9,12 @@ export default {
 </script>
 
 <template>
-  <section>
-    <div>
-      <img src="../../public/giphy.png" alt="giphy">
+  <section class="bg-gradient-to-r from-purple-700 to-pink-500 justify-between items-center rounded-lg flex">
+    <div class="font-bold px-6 py-2">
+      <img src="../../public/giphy.png" alt="giphy" class="w-24">
     </div>
-    <div @click="openURL">
-      <img class="github" src="../assets/github.svg" alt="github">
+    <div @click="openURL" class="cursor-pointer">
+      <img class="w-6 mx-4" src="../assets/extras/github.svg" alt="github">
     </div>
   </section>
 </template>
-
-<style scoped>
-section {
-  background: linear-gradient(270deg, #FF0080 0%, #7928CA 100%);
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 5px;
-  display: flex;
-}
-
-section div {
-  font-weight: 700;
-  padding: 0 30px;
-  color: #fff;
-}
-
-section div>img {
-  width: 100px;
-}
-
-section div>.github {
-  cursor: pointer;
-  width: 25px;
-}
-</style>

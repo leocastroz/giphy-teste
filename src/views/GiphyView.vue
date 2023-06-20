@@ -1,33 +1,3 @@
-<template>
-  <section>
-    <div class="search">
-      <input type="text" v-model="searchQuery" @input="filterGifs" placeholder="Search Gifs" />
-    </div>
-
-    <div class="grid-container">
-      <div class="grid-item" v-for="(gif, index) in filteredGifs" :key="index">
-        <img :src="gif.images.original.url" alt="Gif" @click="openModal(gif)" />
-      </div>
-    </div>
-
-    <div class="error">
-      <div v-if="loading">Carregando...</div>
-      <div v-else-if="error">Ocorreu um erro ao carregar os gifs.</div>
-    </div>
-
-    <div class="modal" v-if="modalOpen">
-      <div class="modal-content">
-        <img :src="selectedGif.images.original.url" alt="Gif" />
-        <div class="close-button" @click="closeModal">
-          <span class="material-symbols-outlined">
-            disabled_by_default
-          </span>
-        </div>
-      </div>
-    </div>
-  </section>
-</template>
-
 <script>
 import axios from 'axios'
 
@@ -116,102 +86,49 @@ export default {
 }
 </script>
 
+<template>
+  <section>
+    <div class="flex justify-center items-center">
+      <input type="text" v-model="searchQuery" @input="filterGifs" placeholder="Search Gifs"
+        class="bg-gradient-to-r from-pink-500 to-purple-700 border-2 border-white rounded-lg py-2 px-4 m-8 text-white focus:font-medium focus:outline-none"
+      />
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+      <div v-for="(gif, index) in filteredGifs" :key="index"
+        class="rounded-lg cursor-pointer p-4 m-4 hover:scale-110 transition-transform duration-300"
+      >
+        <img :src="gif.images.original.url" alt="Gif" class="w-lg" @click="openModal(gif)" />
+      </div>
+    </div>
+
+    <div class="error mt-10 text-3xl text-center text-pink-500" v-if="loading">Carregando...</div>
+    <div class="error mt-10 text-3xl text-center text-pink-500" v-else-if="error">Ocorreu um erro ao carregar os gifs.</div>
+
+    <div class="modal fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-75 flex items-center justify-center" v-if="modalOpen">
+      <div class="modal-content">
+        <img :src="selectedGif.images.original.url" alt="Gif" class="w-full" />
+        <div class="close-button absolute top-4 right-4">
+          <span class="material-symbols-outlined cursor-pointer text-3xl text-white bg-gradient-to-r from-pink-500 to-purple-700 rounded-full py-1 px-2" @click="closeModal">
+            cancel
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
 <style scoped>
-.search {
-  justify-content: center;
-  align-items: center;
-  display: flex;
+
+.hover\:scale-110:hover {
+  transform: scale(1.1);
 }
 
-.search input {
-  background: linear-gradient(270deg, #ff0080 0%, #9433f5 100%);
-  border: 2px solid #fff;
-  border-radius: 5px;
-  padding: 10px 25px;
-  margin: 30px;
+.transition-transform {
+  transition-property: transform;
 }
 
-.search input::placeholder {
-  color: #fff;
-}
-
-.search input:focus {
-  font-weight: 500;
-  outline: none;
-  color: #fff;
-}
-
-.grid-container {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 20px;
-  display: grid;
-}
-
-.grid-item {
-  border: 2px solid #8e8e8ea4;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 10px;
-  margin: 10px;
-}
-
-.grid-item img {
-  height: auto;
-  width: 100%;
-}
-
-.error {
-  margin: 40px;
-  font-size: 30px;
-  text-align: center;
-  color: #ff0080;
-}
-
-.modal {
-  background-color: #000000cc;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  display: flex;
-  z-index: 999;
-  height: 100%;
-  width: 100%;
-  left: 0;
-  top: 0;
-}
-
-.modal-content {
-  position: relative;
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.modal-content img {
-  height: auto;
-  width: 100%;
-}
-
-.close-button {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-
-.close-button span {
-  background: linear-gradient(270deg, #ff0080 0%, #9433f5 100%);
-  cursor: pointer;
-  font-size: 30px;
-  color: #fff;
-}
-
-main {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 50px;
-}
-
-.box {
-  flex-direction: row;
-  display: flex;
+.duration-300 {
+  transition-duration: 300ms;
 }
 </style>

@@ -4,51 +4,25 @@ import MainComponent from './components/MainComponent.vue'
 </script>
 
 <template>
-  <section>
-    <div class="container">
+  <section class="max-w-full m-14">
+    <div class="max-w-7xl mx-auto">
       <MainComponent />
     </div>
-    <nav>
+    <nav
+      class="max-w-xs mx-auto shadow-lg border-solid border-2 border-pink-600 bg-black rounded-full text-white text-center mt-8 p-5">
       <div class="nav-links">
-        <RouterLink to="/">HOME</RouterLink>
-        <RouterLink to="/giphy">FOR GIPHY</RouterLink>
+        <RouterLink to="/" class="text-white font-bold mr-4">HOME</RouterLink>
+        <RouterLink to="/giphy" class="text-white font-bold">FOR GIPHY</RouterLink>
       </div>
     </nav>
   </section>
   <RouterView />
 </template>
 
+
 <style scoped>
-section {
-  max-width: 100%;
-  margin: 50px;
-}
-
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-nav {
-  max-width: 350px;
-  margin: 0 auto;
-}
-
 nav {
   box-shadow: 0 0 1000px 5px #FF0080;
-  border: 1px solid #FF0080;
-  background-color: #000000;
-  border-radius: 50px;
-  text-align: center;
-  margin-top: 20px;
-  padding: 20px 0;
-}
-
-nav a {
-  text-decoration: none;
-  font-weight: 700;
-  color: #fff;
-  margin: 20px;
 }
 
 nav a.router-link-exact-active {
@@ -56,4 +30,5 @@ nav a.router-link-exact-active {
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-}</style>
+}
+</style>
