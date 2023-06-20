@@ -1,41 +1,38 @@
-# GIPHY - TESTE
+<br>
+<p align="center">
+  <img src="./public/giphy.png" alt="giphy" width="auto" height="100px">
 
-This project is intended for testing using the GIPHY Developers API
+  <h3 align="center">GIPHY DEVELOPERS</h3>
 
-## Recommended IDE Setup
+  <p align="center">
+    playing with gifs
+    <br />
+    <a href="https://developers.giphy.com/docs/clips/endpoint#search" target="_blank"><strong>Documentation »</strong></a>
+    <br />
+    <br />
+    <a href="https://twitter.com/GIPHY" target="_blank"> <img src="https://img.shields.io/badge/-Twitter-1ca0f1?style=flat&labelColor=1ca0f1&logo=twitter&logoColor=white&link=Twitter" href="https://twitter.com/eguatech">
+    <a href="https://www.instagram.com/giphy/" target="_blank"><img src="https://img.shields.io/badge/-Instagram-c13584?style=flat&labelColor=c13584&logo=instagram&logoColor=white">
+    <a href="https://www.youtube.com/@Giphy" target="_blank"><img src="https://img.shields.io/badge/-YouTube-ff0000?style=flat-square&labelColor=ff0000&logo=youtube&logoColor=white">
+    <a href="https://www.linkedin.com/company/giphy/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=Linkedin&logoColor=white"> </a>
+  </p>
+</p>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Installation
 
-## Customize configuration
+`yarn install` or `npm install`
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Starting
 
-## Project Setup
+`yarn dev` or `npm run dev`
 
-```sh
-npm install
-```
+## Compile
 
-### Compile and Hot-Reload for Development
+`yarn build` or `npm run build`
 
-```sh
-npm run dev
-```
+## Unit Tests
 
-### Compile and Minify for Production
+`yarn teste` or `npm run test`
 
-```sh
-npm run build
-```a
+## API GIPHY
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+`https://developers.giphy.com/` 
