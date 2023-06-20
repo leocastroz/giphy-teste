@@ -102,7 +102,9 @@ export default {
       </div>
     </div>
 
-    <div class="error mt-10 text-3xl text-center text-pink-500" v-if="loading">Carregando...</div>
+    <div v-if="loading" class="flex justify-center items-center ">
+      <div class="animate-spin rounded-full h-10 w-10 border-dashed border-2 border-white border-t-5 border-b-2 bg-gradient-to-r from-purple-700 to-pink-700"></div>
+    </div>
     <div class="error mt-10 text-3xl text-center text-pink-500" v-else-if="error">Ocorreu um erro ao carregar os gifs.</div>
 
     <div class="modal fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-75 flex items-center justify-center" v-if="modalOpen">
