@@ -1,10 +1,20 @@
+<script>
+export default {
+  methods: {
+    openURL() {
+      window.open('https://github.com/leocastroz', '_blank');
+    }
+  }
+}
+</script>
+
 <template>
   <section>
     <div>
-      <img src="../../public/giphy.png" alt="">
+      <img src="../../public/giphy.png" alt="giphy">
     </div>
-    <div>
-      <img class="github" src="../assets/github.svg" alt="">
+    <div @click="openURL">
+      <img class="github" src="../assets/github.svg" alt="github">
     </div>
   </section>
 </template>
@@ -29,6 +39,7 @@ section div>img {
 }
 
 section div>.github {
+  cursor: pointer;
   width: 25px;
 }
 </style>

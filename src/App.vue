@@ -1,58 +1,59 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HeaderComponent from './components/HeaderComponent.vue'
+import MainComponent from './components/MainComponent.vue'
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <HeaderComponent />
-    </div>
+  <section>
     <div class="container">
-      <nav>
-        <RouterLink to="/">HOME</RouterLink>
-        <RouterLink to="/giphy">GIPHY</RouterLink>
-      </nav>
+      <MainComponent />
     </div>
-  </header>
-
+    <nav>
+      <div class="nav-links">
+        <RouterLink to="/">HOME</RouterLink>
+        <RouterLink to="/giphy">FOR GIPHY</RouterLink>
+      </div>
+    </nav>
+  </section>
   <RouterView />
 </template>
 
 <style scoped>
-header {
+section {
   max-width: 100%;
   margin: 50px;
 }
-.wrapper {
-  margin: 0 auto;
-  max-width: 1400px;
-}
+
 .container {
+  max-width: 1400px;
   margin: 0 auto;
-  max-width: 350px;
-}
-nav {
-  padding: 20px 0;
-  margin-top: 20px;
-  text-align: center;
-  background-color: #000000;
-  box-shadow: 0 0 1000px 5px #FF0080;
-  border: 1px solid #FF0080;
-  border-radius: 50px;
-}
-nav a {
-  font-weight: 700;
-  margin: 40px;
-  padding: 0 5px;
-  text-decoration: none;
-  color: #fff;
-}
-nav a.router-link-exact-active {
-  background: linear-gradient(270deg,#FF0080 0%,#9433f5 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
-</style>
+nav {
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+nav {
+  box-shadow: 0 0 1000px 5px #FF0080;
+  border: 1px solid #FF0080;
+  background-color: #000000;
+  border-radius: 50px;
+  text-align: center;
+  margin-top: 20px;
+  padding: 20px 0;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 700;
+  color: #fff;
+  margin: 20px;
+}
+
+nav a.router-link-exact-active {
+  background: linear-gradient(270deg, #FF0080 0%, #9433f5 100%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}</style>
