@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -24,19 +25,24 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
 
+
   computed: {
+    ...mapGetters(['getGifs']),
     filteredGifs() {
+      const gifs = this.getGifs;
+
       if (this.searchQuery.trim() === '') {
-        return this.gifs
+        return gifs;
       } else {
-        return this.gifs.filter((gif) =>
+        return gifs.filter((gif) =>
           gif.title.toLowerCase().includes(this.searchQuery.trim().toLowerCase())
-        )
+        );
       }
     }
   },
 
   methods: {
+    ...mapActions(['setGifs']),
     async loadGifs() {
       const queryString = new URLSearchParams({
         api_key: import.meta.env.VITE_APP_API_KEY,
@@ -47,6 +53,7 @@ export default {
         const response = await axios.get(
           `${import.meta.env.VITE_URL_GIPHY}?${queryString.toString()}`
         )
+        this.setGifs([...this.getGifs, ...response.data.data]);
         this.gifs = [...this.gifs, ...response.data.data]
         this.originalGifs = [...this.gifs]
         this.offset += 25
