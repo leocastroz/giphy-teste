@@ -1,0 +1,10 @@
+.nav-bar {
+  box-shadow: 0 0 1000px 5px #ff0080;
+}
+
+.nav-links a.router-link-exact-active {
+  background: linear-gradient(270deg, #ff0080 0%, #9433f5 100%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}

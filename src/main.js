@@ -1,9 +1,9 @@
-import './assets/tailwind.css'
+import './assets/config/tailwind.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import axios from 'axios'
-import store from '../store'
+import store from './database/store'
 
 import App from './App.vue'
 import router from './router'
