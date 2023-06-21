@@ -23,7 +23,7 @@ export default {
 <template>
   <div>
     <transition name="modal-fade">
-      <div class="modal fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-75 flex items-center justify-center"
+      <div class="modal fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
         v-if="modalOpen">
         <div class="modal-content">
           <img :src="selectedGif.images.original.url" alt="Gif" class="w-full rounded-xl" />

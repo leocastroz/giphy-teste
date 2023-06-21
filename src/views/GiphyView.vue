@@ -21,8 +21,9 @@ export default {
       searchQuery: '',
       originalGifs: [],
       modalOpen: false,
-      selectedGif: null
-    };
+      selectedGif: null,
+      showScrollButton: false
+    }
   },
   mounted() {
     this.loadGifs()
@@ -32,6 +33,9 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   computed: {
+    shouldShowClearIcon() {
+      return this.searchQuery.length > 0;
+    },
     ...mapGetters(['getGifs']),
     filteredGifs() {
       const gifs = this.getGifs
@@ -45,6 +49,9 @@ export default {
     }
   },
   methods: {
+    clearSearch() {
+      this.searchQuery = '';
+    },
     ...mapActions(['setGifs']),
     async loadGifs() {
       const queryString = new URLSearchParams({
@@ -74,6 +81,13 @@ export default {
       if (!this.loading && scrollY + visibleHeight >= totalHeight) {
         this.loadGifs()
       }
+      this.showScrollButton = window.pageYOffset > 200
+    },
+    scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     },
     filterGifs() {
       if (this.searchQuery.trim() === '') {
@@ -101,33 +115,27 @@ export default {
 
 <template>
   <section>
+    <img
+      src="../assets//extras/arrow.svg"
+      alt="arrow"
+      class="bg-gradient-to-r from-pink-500 to-purple-700 border-2 border-white cursor-pointer rounded-full fixed bottom-3 right-3 m-2 z-40"
+      @click="scrollToTop"
+    />
     <div class="flex justify-center items-center">
-      <input 
-        type="text" 
-        v-model="searchQuery" 
-        @input="filterGifs" 
+      <input
+        type="text"
+        v-model="searchQuery"
+        @input="filterGifs"
         placeholder="Search Gifs"
-        class="bg-gradient-to-r 
-        from-pink-500 to-purple-700 
-        border-2 border-white rounded-lg 
-        py-2 px-4 m-8 text-white 
-        focus:font-medium focus:outline-none"
-      >
+        class="bg-gradient-to-r from-pink-500 to-purple-700 border-2 border-white rounded-lg py-2 px-4 m-8 text-white focus:font-medium focus:outline-none"
+      />
+      <img src="../assets/extras/close.svg" alt="clear" @click="clearSearch" v-if="searchQuery.length > 0" class="clear-icon cursor-pointer">
     </div>
 
-    <gif-grid 
-      :filteredGifs="filteredGifs" 
-      @open-modal="handleOpenModal" 
-    />
-    <LoadingError 
-      :loading="loading" 
-      :error="error" 
-    />
+    <gif-grid :filteredGifs="filteredGifs" @open-modal="handleOpenModal" />
+    
+    <LoadingError :loading="loading" :error="error" />
 
-    <ModalPreview 
-      :modalOpen="modalOpen" 
-      :selectedGif="selectedGif" 
-      @close-modal="closeModal" 
-    />
+    <ModalPreview :modalOpen="modalOpen" :selectedGif="selectedGif" @close-modal="closeModal" />
   </section>
 </template>
