@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios'
 import { mapGetters, mapActions } from 'vuex'
+import { saveAs } from 'file-saver';
 
 export default {
   data() {
@@ -42,6 +43,19 @@ export default {
   },
 
   methods: {
+    downloadImage(url) {
+      axios
+        .get(url, {
+          responseType: 'blob'
+        })
+        .then(response => {
+          const filename = 'image.gif';
+          saveAs(response.data, filename);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    },
     ...mapActions(['setGifs']),
     async loadGifs() {
       const queryString = new URLSearchParams({
@@ -109,14 +123,29 @@ export default {
       />
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ">
+
+
       <div
-        v-for="(gif, index) in filteredGifs"
-        :key="index"
-        class="rounded-lg cursor-pointer p-4 m-4 hover:scale-110 transition-transform duration-300"
-      >
-        <img :src="gif.images.original.url" alt="Gif" class="w-lg" @click="openModal(gif)" />
+      v-for="(gif, index) in filteredGifs"
+      :key="index"
+      class="rounded-lg cursor-pointer p-4 m-4 hover:scale-110 transition-transform duration-300"
+    >
+      <button class="download-button" @click="downloadImage(gif.images.original.url)">
+        <span class="material-symbols-outlined bg-gradient-to-r from-pink-500 to-purple-700 text-white rounded-sm">
+          download
+        </span>
+      </button>
+      <div class="relative">
+        <img :src="gif.images.original.url" alt="Gif" class="w-lg rounded-lg fist-image " @click="openModal(gif)" />
+        <span class="material-symbols-outlined absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl cursor-pointer hidden fist-image-hover">
+          zoom_in
+        </span>
       </div>
+    </div>
+
+
+
     </div>
 
     <div v-if="loading" class="flex justify-center items-center">
@@ -133,7 +162,7 @@ export default {
       v-if="modalOpen"
     >
       <div class="modal-content">
-        <img :src="selectedGif.images.original.url" alt="Gif" class="w-full" />
+        <img :src="selectedGif.images.original.url" alt="Gif" class="w-full rounded-xl" />
         <div class="close-button absolute top-4 right-4">
           <span
             class="material-symbols-outlined cursor-pointer text-3xl text-white bg-gradient-to-r from-pink-500 to-purple-700 rounded-full py-1 px-2"
@@ -150,6 +179,16 @@ export default {
 <style scoped>
 .hover\:scale-110:hover {
   transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.fist-image:hover {
+  opacity: 0.3;
+}
+
+.fist-image:hover+.fist-image-hover {
+  opacity: 0.5;
+  display: block;
 }
 
 .transition-transform {
