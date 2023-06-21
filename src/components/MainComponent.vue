@@ -2,7 +2,7 @@
 export default {
   methods: {
     openURL() {
-      window.open('https://github.com/leocastroz', '_blank');
+      window.open('https://github.com/leocastroz/giphy-teste', '_blank')
     }
   }
 }
