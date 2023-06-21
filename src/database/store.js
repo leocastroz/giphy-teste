@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { createStore } from 'vuex';
+import axios from 'axios'
+import { createStore } from 'vuex'
 
 const store = createStore({
   state: {
@@ -7,7 +7,7 @@ const store = createStore({
   },
   mutations: {
     SET_GIFS(state, gifs) {
-      state.gifs = gifs;
+      state.gifs = gifs
     }
   },
   actions: {
@@ -17,18 +17,18 @@ const store = createStore({
             const response = await axios.get(
                 `https://api.giphy.com/v1/gifs/trending?api_key=ICR7VcGaD4CwjRQ3LvYkpPwG4VHdG5pM&offset=${this.offset}`
             );
-            commit('SET_GIFS', response.data.data);
+            commit('SET_GIFS', response.data.data)
           } catch (error) {
-            console.error(error);
+            console.error(error)
           }
         } else {
-          commit('SET_GIFS', [...state.gifs, ...gifs]);
+          commit('SET_GIFS', [...state.gifs, ...gifs])
         }
       },
   },
   getters: {
     getGifs(state) {
-      return state.gifs;
+      return state.gifs
     }
   }
 });
